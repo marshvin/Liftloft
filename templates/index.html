@@ -49,7 +49,7 @@
 
         <!-- Content Section -->
         <div class="container mx-auto flex-grow text-center text-white relative z-10 p-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 md:mb-8">Welcome to Liftloft</h1>
+            <h1 class="text-4xl mt-24 md:text-5xl font-bold mb-4 md:mb-8">Welcome to Liftloft</h1>
             <p class="text-lg md:text-3xl mb-4 md:mb-8">Determined to get an Airbnb that suits your Taste? Look no
                 further</p>
             
@@ -60,29 +60,38 @@
             <div id="modal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
                 <div class="flex items-center justify-center h-full">
                     <div class="bg-white p-8 rounded-lg">
-                        <!-- Your form content goes here -->
-                        <form action="/recommend" method="post" class="flex flex-wrap justify-center items-center">
-                            <div class="flex items-center mb-2 md:mb-4">
-                                <label for="theme" class="mr-2 text-base md:text-lg">Enter your preferred theme:</label>
-                                <input type="text" name="theme" required class="border p-2 rounded text-base md:text-lg">
-                            </div>
-                            <div class="flex items-center mb-2 md:mb-4">
-                                <label for="priceRange" class="mr-2 text-base text-black md:text-lg">Price Range:</label>
-                                <select name="priceRange" class="border p-2 rounded text-base md:text-lg">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
-                                </select>
-                            </div>
-                            <div class="flex items-center mb-2 md:mb-4">
-                                <label for="location" class="mr-2 text-base md:text-lg">Location:</label>
-                                <input type="text" name="location" class="border p-2 rounded text-base md:text-lg">
-                            </div>
-                            <div class="mb-4">
-                                <button type="submit" class="bg-blue-500 text-white p-2 rounded text-base md:text-lg">Get
-                                    Recommendations</button>
-                            </div>
-                        </form>
+                                <!-- Form Section -->
+        <div class="container mx-auto flex flex-col items-center justify-center mt-12">
+            <!-- Header with Logo -->
+            <div class="flex items-center mb-8">
+                <img src="path/to/your/logo.png" alt="Logo" class="w-12 h-12 mr-2"> <!-- Adjust size as needed -->
+                <h1 class="text-2xl font-bold text-white">Liftloft Recommendations</h1>
+            </div>
+
+            <!-- Form -->
+            <form action="/recommend" method="post" class="flex flex-col items-center">
+                <div class="flex items-center mb-4">
+                    <label for="theme" class="mr-2 text-lg text-white">Enter your preferred theme:</label>
+                    <input type="text" name="theme" required class="border p-2 rounded text-base md:text-lg">
+                </div>
+                <div class="flex items-center mb-4">
+                    <label for="priceRange" class="mr-2 text-lg text-white">Price Range:</label>
+                    <select name="priceRange" class="border p-2 rounded text-base md:text-lg">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="flex items-center mb-4">
+                    <label for="location" class="mr-2 text-lg text-white">Location:</label>
+                    <input type="text" name="location" class="border p-2 rounded text-base md:text-lg">
+                </div>
+                <div class="mb-8">
+                    <button type="submit" class="bg-blue-500 text-white p-3 rounded text-base md:text-lg">Get Recommendations</button>
+                </div>
+            </form>
+        </div>
+
                         
                         <!-- Close Modal Button -->
                         <button id="closeModal" class="text-gray-500 text-sm mt-4">Close</button>
@@ -91,6 +100,32 @@
             </div>
         </div>
     </div>
+
+<!-- New Responsive Section -->
+<div class="container  mx-auto flex flex-col-reverse md:flex-row items-center justify-center mt-12">
+    <!-- Text on the Top (md:w-1/2) -->
+    <div class="w-full md:w-1/2 p-8 bg-white rounded-lg shadow-lg mb-8 md:mb-0">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">About Liftloft</h2>
+        <p class="text-base md:text-lg text-gray-700">
+            No more scrolling endlessly through listings that don't match your preferences.
+            We streamline the process, presenting you with options that align with your travel style.
+        </p>
+        <p class="text-base md:text-lg text-gray-700 mt-4">
+            Our state-of-the-art recommendation algorithm goes to work! Powered by advanced machine learning,
+            it analyzes your responses and compares them with our vast database of Airbnb listings.
+            The result? A curated list of accommodations that match your unique preferences.
+        </p>
+    </div>
+
+    <!-- Image on the Bottom (md:w-1/2) -->
+    <div class="w-full md:w-1/2">
+        <img src="/static/naibackg.jpg" alt="About Liftloft" class="object-cover w-full h-full rounded-lg">
+    </div>
+</div>
+
+
+
+
 
     <script>
         //Open and close humberger menu
