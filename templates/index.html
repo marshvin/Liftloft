@@ -61,36 +61,41 @@
                 <div class="flex items-center justify-center h-full">
                     <div class="bg-white p-8 rounded-lg">
                                 <!-- Form Section -->
-        <div class="container mx-auto flex flex-col items-center justify-center mt-12">
-            <!-- Header with Logo -->
-            <div class="flex items-center mb-8">
-                <img src="path/to/your/logo.png" alt="Logo" class="w-12 h-12 mr-2"> <!-- Adjust size as needed -->
-                <h1 class="text-2xl font-bold text-white">Liftloft Recommendations</h1>
-            </div>
+                                <div class="m-7">
+                                    <form action="/recommend" method="post" id="form" class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md dark:bg-gray-800">
+                                        <div class="mb-6">
+                                            <label for="theme" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Preferred Theme</label>
+                                            <input type="text" name="theme" id="theme" placeholder="Theme" required
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                        </div>
+                                        <div class="mb-6">
+                                            <label for="location" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Preferred Location</label>
+                                            <input type="text" name="location" id="location" placeholder="Enter Location" required
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                        </div>
+                                        <div class="mb-6">
+                                            <label for="Price" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Price Range</label>
+                                            <select name="location" id="location"
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-gray-800 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
+                                                <option class="text-gray-800" value="city1">500</option>
+                                                <option class="text-gray-800" value="city2">400-500</option>
+                                                <option class="text-gray-800" value="city3">200-400</option>
+                                                <option class="text-gray-800" value="city1">100-200</option>
+                                                <option class="text-gray-800" value="city2">0-50</option>
+                                                
 
-            <!-- Form -->
-            <form action="/recommend" method="post" class="flex flex-col items-center">
-                <div class="flex items-center mb-4">
-                    <label for="theme" class="mr-2 text-lg text-white">Enter your preferred theme:</label>
-                    <input type="text" name="theme" required class="border p-2 rounded text-base md:text-lg">
-                </div>
-                <div class="flex items-center mb-4">
-                    <label for="priceRange" class="mr-2 text-lg text-white">Price Range:</label>
-                    <select name="priceRange" class="border p-2 rounded text-base md:text-lg">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div class="flex items-center mb-4">
-                    <label for="location" class="mr-2 text-lg text-white">Location:</label>
-                    <input type="text" name="location" class="border p-2 rounded text-base md:text-lg">
-                </div>
-                <div class="mb-8">
-                    <button type="submit" class="bg-blue-500 text-white p-3 rounded text-base md:text-lg">Get Recommendations</button>
-                </div>
-            </form>
-        </div>
+                                                <!-- Add more options as needed -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-6">
+                                            <button type="submit"
+                                                class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Recommend</button>
+                                        </div>
+                                        <p class="text-base text-center text-gray-400" id="result"></p>
+                                    </form>
+                                </div>
+                                
+         
 
                         
                         <!-- Close Modal Button -->
