@@ -44,6 +44,9 @@
                     Account
     
                 </a>
+                <a href="#"
+                    class="toggle hidden md:flex w-full md:w-auto px-3 py-1 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded">Login
+                </a>
           
         </nav>
 
@@ -51,48 +54,39 @@
         <div class="container mx-auto flex-grow text-center text-white relative z-10 p-4">
             <h1 class="text-4xl mt-24 md:text-5xl font-bold mb-4 md:mb-8">Welcome to Liftloft</h1>
             <p class="text-lg md:text-3xl mb-4 md:mb-8">Determined to get an Airbnb that suits your Taste? Look no
-                further</p>
+                further. <br> Just,</p>
             
-            <!-- Open Modal Button -->
-            <button id="openModal" class="bg-blue-500 text-white p-2 rounded text-base md:text-lg">Try Recommendations</button>
-
+            
+            <button id="openModal" class="inline-block text-white font-bold py-2 px-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-800 border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-3000 ease-in-out">
+                Click Here
+            </button>
             <!-- Modal Container -->
             <div id="modal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
                 <div class="flex items-center justify-center h-full">
                     <div class="bg-white p-8 rounded-lg">
                                 <!-- Form Section -->
                                 <div class="m-7">
-                                    <form action="/recommend" method="post" id="form" class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md dark:bg-gray-800">
-                                        <div class="mb-6">
-                                            <label for="theme" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Preferred Theme</label>
+                                    <form action="/recommend" method="post" id="form" class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md bg-gray-200">
+                                        <div class=" mb-6">
+                                            <label for="theme" class="block mb-2 text-lg text-gray-600 ">Preferred Theme</label>
                                             <input type="text" name="theme" id="theme" placeholder="Theme" required
-                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring focus:ring-indigo-100" />
                                         </div>
                                         <div class="mb-6">
-                                            <label for="location" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Preferred Location</label>
+                                            <label for="location" class="block mb-2 text-lg text-gray-600 dark:text-gray-400">Preferred Location</label>
                                             <input type="text" name="location" id="location" placeholder="Enter Location" required
-                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                            class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring focus:ring-indigo-100"/>
                                         </div>
-                                        <div class="mb-6">
-                                            <label for="Price" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Price Range</label>
-                                            <select name="location" id="location"
-                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-gray-800 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
-                                                <option class="text-gray-800" value="city1">500</option>
-                                                <option class="text-gray-800" value="city2">400-500</option>
-                                                <option class="text-gray-800" value="city3">200-400</option>
-                                                <option class="text-gray-800" value="city1">100-200</option>
-                                                <option class="text-gray-800" value="city2">0-50</option>
-                                                
-
-                                                <!-- Add more options as needed -->
-                                            </select>
-                                        </div>
+                                        
                                         <div class="mb-6">
                                             <button type="submit"
                                                 class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Recommend</button>
+                                                
                                         </div>
                                         <p class="text-base text-center text-gray-400" id="result"></p>
                                     </form>
+                                       
+                                    
                                 </div>
                                 
          
