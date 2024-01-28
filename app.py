@@ -22,9 +22,20 @@ def get_recommendations(theme, neighborhood):
     cosine_scores = linear_kernel(theme_vectorized, tfidf_matrix_train).flatten()
     sim_scores = list(enumerate(cosine_scores))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:6]  # Get top 5 recommendations
+    sim_scores = sim_scores[1:20]  # Get top 5 recommendations
     airbnb_indices = [i[0] for i in sim_scores]
-    return airbnb_df['name'].iloc[airbnb_indices].tolist()
+    
+    recommendations = []
+    for idx in airbnb_indices:
+        recommendation = {
+            'name': airbnb_df['name'].iloc[idx],
+            #'image_url': airbnb_df['image_url'].iloc[idx],
+            'ratings': airbnb_df['ratings'].iloc[idx],
+            'price': airbnb_df['price'].iloc[idx]
+        }
+        recommendations.append(recommendation)
+    
+    return recommendations
 
 @app.route('/')
 def index():
