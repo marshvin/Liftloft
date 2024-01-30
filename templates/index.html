@@ -76,9 +76,6 @@
                                        
                                     
                                 </div>
-                                
-         
-
                         
                         <!-- Close Modal Button -->
                         <button id="closeModal" class="middle none center rounded-lg py-3 px-6 font-sans text-xs font-bold uppercase text-blue-400 transition-all hover:bg-blue-600 active:bg-blue-300 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Close</button>
@@ -111,28 +108,7 @@
 </div>
 
 
-
-
-
-    <script>
-        //Open and close humberger menu
-        document.getElementById("hamburger").onclick = function toggleMenu() {
-            const navToggle = document.getElementsByClassName("toggle");
-            for (let i = 0; i < navToggle.length; i++) {
-                navToggle.item(i).classList.toggle("hidden");
-            }
-        };
-
-        // Open modal
-        document.getElementById("openModal").onclick = function openModal() {
-            document.getElementById("modal").style.display = "block";
-        };
-
-        // Close modal
-        document.getElementById("closeModal").onclick = function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        };
-    </script>
+<script src="{{ url_for('static', filename='/js/index.js') }}"></script>
 
 </body>
 

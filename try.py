@@ -1,10 +1,8 @@
-from flask import Flask, render_template, request
+# Load necessary libraries
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import joblib
-
-app = Flask(__name__)
 
 # Load the cleaned DataFrame
 cleaned_data_path = 'cleaned_data.csv'
@@ -22,14 +20,13 @@ def get_recommendations(theme, neighborhood):
     cosine_scores = linear_kernel(theme_vectorized, tfidf_matrix_train).flatten()
     sim_scores = list(enumerate(cosine_scores))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:20]  # Get top  recommendations
+    sim_scores = sim_scores[1:20]  # Get top recommendations
     airbnb_indices = [i[0] for i in sim_scores]
     
     recommendations = []
     for idx in airbnb_indices:
         recommendation = {
             'name': airbnb_df['name'].iloc[idx],
-            #'image_url': airbnb_df['image_url'].iloc[idx],
             'ratings': airbnb_df['ratings'].iloc[idx],
             'price': airbnb_df['price'].iloc[idx]
         }
@@ -37,18 +34,9 @@ def get_recommendations(theme, neighborhood):
     
     return recommendations
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/recommend', methods=['POST'])
-def recommend():
-    user_input_theme = request.form['theme']
-    user_input_neighborhood = request.form['location']
-    
-    recommendations = get_recommendations(user_input_theme, user_input_neighborhood)
-    
-    return render_template('recommendation.html', recommendations=recommendations)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# Example usage:
+theme_input = "City"
+neighborhood_input = "Nairobi"
+recommendations = get_recommendations(theme_input, neighborhood_input)
+for idx, recommendation in enumerate(recommendations, 1):
+    print(f"Recommendation {idx}: {recommendation['name']} - Ratings: {recommendation['ratings']}, Price: {recommendation['price']}")
