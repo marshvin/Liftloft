@@ -40,7 +40,7 @@
         <div class="container mx-auto flex-grow text-center text-white relative z-10 p-4">
             <h1 class="text-4xl mt-24 md:text-5xl font-bold mb-4 md:mb-8">Welcome to Liftloft</h1>
             <p class="text-lg md:text-3xl mb-4 md:mb-8">Determined to get an Airbnb that suits your Taste? Look no
-                further. <br> Just,</p>
+                further. </p>
             
             
             <button id="openModal" class="inline-block text-white font-bold py-2 px-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-800 border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-3000 ease-in-out">
@@ -86,13 +86,20 @@
     </div>
 
 <!-- New Responsive Section -->
+<div class="text-center mb-8 mt-6">
+    <div class="inline-block border-b border-gray-400 w-16 mr-4"></div>
+    <h2 class="text-3xl text-purple-600 font-bold inline-block">What is Liftloft?</h2>
+    <div class="inline-block border-b border-gray-400 w-16 ml-4"></div>
+  </div>
 <div class="container  mx-auto flex flex-col-reverse md:flex-row items-center justify-center mt-12">
-    <!-- Text on the Top (md:w-1/2) -->
+    
+    
     <div class="w-full md:w-1/2 p-8 bg-white rounded-lg shadow-lg mb-8 md:mb-0">
         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">About Liftloft</h2>
         <p class="text-base md:text-lg text-gray-700">
             No more scrolling endlessly through listings that don't match your preferences.
             We streamline the process, presenting you with options that align with your travel style.
+            Get ready to embark on the journey of a lifetime and create unforgettable memories in the heart of Kenya!
         </p>
         <p class="text-base md:text-lg text-gray-700 mt-4">
             Our state-of-the-art recommendation algorithm goes to work! Powered by advanced machine learning,
@@ -107,7 +114,51 @@
     </div>
 </div>
 
-
+<!-- New Responsive Section -->
+<div class="min-h-screen bg-white">
+    <div class="container mx-auto py-10">
+      <div class="text-center mb-8">
+        <div class="inline-block border-b border-gray-400 w-16 mr-4"></div>
+        <h2 class="text-3xl text-purple-600 font-bold inline-block">How it works</h2>
+        <div class="inline-block border-b border-gray-400 w-16 ml-4"></div>
+      </div>
+      <h2 class="text-3xl font-semibold mb-8 text-center">Three Easy Steps</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center justify-center mb-4">
+            <img width="48" height="48" src="https://img.icons8.com/fluency/48/europe.png" alt="europe"/>
+          </div>
+          <h3 class="text-lg text-purple-500 font-semibold text-center mb-2">Recommendation</h3>
+          <p class="text-center text-gray-600">Select the theme and Location that resonates most with your wanderlust spirit and unveil the hidden gem waiting to be discovered within Kenya's breathtaking landscapes.
+             Anticipate the excitement as our cutting-edge recommendation algorithm takes the reins, guiding you to your ultimate destination.
+          </p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center justify-center mb-4">
+            <img width="48" height="48" src="https://img.icons8.com/fluency/48/000000/us-dollar-circled--v1.png" alt="us-dollar-circled--v1"/>
+          </div>
+          <h3 class="text-lg text-purple-500 font-semibold text-center mb-2">Book Your Choice</h3>
+          <p class="text-center text-gray-600">Secure your dream Stay in Kenya with a simple click! Choose from a simplified list after recommendation algorithm works its magic,
+             ensuring your booking experience is as seamless as your upcoming adventure.</p>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center justify-center mb-4">
+            <img width="48" height="48" src="https://img.icons8.com/fluency/48/airplane-take-off.png" alt="airplane-take-off"/>
+          </div>
+          <h3 class="text-lg text-purple-500 font-semibold text-center mb-2">Travel to location</h3>
+          <p class="text-center text-gray-600">After selecting your perfect destination in Kenya, it's time to experience the magic of Airbnb! Dive into a world of unique accommodations tailored to your taste, offering comfort, charm, and unparalleled hospitality. Whether you crave a cozy cabin in the mountains or a chic urban loft,
+             Airbnb has your dream stay covered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 <script src="{{ url_for('static', filename='/js/index.js') }}"></script>
 
 </body>
