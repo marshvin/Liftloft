@@ -12,6 +12,10 @@
 </head>
 <body >
     <div id="spinner" class="spinner"></div>
+    <div id="loadingText" class="text">Getting your Airbnbs...</div>
+
+
+    
     <div id="content" class="hidden">
     <div>
         <nav class="relative px-4 py-8 flex justify-between items-center bg-purple-500">
@@ -121,15 +125,24 @@
 
  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
  <script>
-     // Show spinner initially
-     document.getElementById('spinner').classList.add('visible');
- 
-     // Simulate loading delay
-     setTimeout(function() {
-         // Hide spinner and show content after a delay (e.g., 3 seconds)
-         document.getElementById('spinner').classList.remove('visible');
-         document.getElementById('content').classList.remove('hidden');
-     }, 3000); // Adjust the delay as needed
- </script>
+    // Show spinner and loading text initially
+  document.getElementById('spinner').classList.add('visible');
+  document.getElementById('loadingText').classList.add('visible');
+  
+  // Simulate loading delay
+  setTimeout(function() {
+      // Hide spinner and loading text after a delay (e.g., 3 seconds)
+      document.getElementById('spinner').classList.remove('visible');
+      document.getElementById('loadingText').classList.remove('visible');
+      
+      // Hide both spinner and loading text
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('loadingText').style.display = 'none';
+      
+      // Show content after the delay
+      document.getElementById('content').classList.remove('hidden');
+  }, 3000); // Adjust the delay as needed
+  </script>
+  
 </body>
 </html>

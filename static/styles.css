@@ -19,7 +19,13 @@
     opacity: 1;
     visibility: visible;
 }
-
+.text {
+    color: rgb(91, 91, 100);
+    position: absolute;
+    top: calc(50% + 30px); /* Adjust the distance from the spinner */
+    left: 50%;
+    transform: translateX(-50%);
+}
 @keyframes spin {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -28,3 +34,5 @@
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }
+
+
