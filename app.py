@@ -30,7 +30,7 @@ def get_recommendations(theme, neighborhood):
     cosine_scores = linear_kernel(theme_vectorized, tfidf_matrix_train).flatten()
     sim_scores = list(enumerate(cosine_scores))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:20]  # Get top recommendations
+    sim_scores = sim_scores[1:40]  # Get top recommendations
     airbnb_indices = [i[0] for i in sim_scores]
     
     recommendations = []
