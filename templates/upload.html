@@ -1,0 +1,33 @@
+<!-- upload.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Airbnb Listing</title>
+</head>
+<body>
+    <h1>Upload Airbnb Listing</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br><br>
+        
+        <label for="theme">Theme:</label>
+        <input type="text" name="theme" required><br><br>
+        
+        <label for="location">Location:</label>
+        <input type="text" name="location" required><br><br>
+        
+        <label for="ratings">Ratings:</label>
+        <input type="number" name="ratings" min="0" max="5" step="0.1" required><br><br>
+        
+        <label for="price">Price:</label>
+        <input type="number" name="price" min="0" required><br><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required><br><br>
+        
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

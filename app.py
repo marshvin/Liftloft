@@ -76,7 +76,16 @@ class User(db.Model):
     name = db.Column(db.String(100))
     email = db.Column(db.String(70), unique = True)
     password = db.Column(db.String(80))
-  
+
+class Airbnb(db.Model):
+    __tablename__ = 'airbnb'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    theme = db.Column(db.String(100))
+    location = db.Column(db.String(100))
+    ratings = db.Column(db.Float)
+    price = db.Column(db.Float)
+    image_url = db.Column(db.String(200))  # Store image URLs  
 # decorator for verifying the JWT
 def token_required(f):
     @wraps(f)
@@ -104,14 +113,33 @@ def token_required(f):
   
     return decorated
   
-@app.route('/test-db')
-def test_db():
-    try:
-        # Execute a test query
-        count = db.session.query(User).count()
-        return f"Connection to database is successful. Total users: {count}"
-    except Exception as e:
-        return f"Error connecting to database: {str(e)}"
+# Route for the upload page and handling image uploads
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'GET':
+        return render_template('upload.html')
+    elif request.method == 'POST':
+        name = request.form['name']
+        theme = request.form['theme']
+        location = request.form['location']
+        ratings = float(request.form['ratings'])
+        price = float(request.form['price'])
+        
+        # Handle image upload to AWS S3
+        if 'image' in request.files:
+            image = request.files['image']
+            # Process the uploaded image (e.g., save to disk, upload to S3)
+            # Store the image URL in the database
+            # Example: image_url = upload_image_to_s3(image)
+            image_url = 'url_of_uploaded_image'
+        
+        
+            airbnb = Airbnb(name=name, theme=theme, location=location, ratings=ratings, price=price)
+            db.session.add(airbnb)
+            db.session.commit()
+        
+        return f"Airbnb listing uploaded successfully. Image URL: {image_url}"
+    return "Unsupported HTTP method."
 
 # Define the signup and signin routes
 @app.route('/signup', methods=['GET', 'POST'])
@@ -166,5 +194,16 @@ def signin():
 
     # Render the signin page if the request method is GET
     return render_template('signin.html')
+
+@app.route('/booking')
+def booking():
+    # Retrieve data from query parameters
+    name = request.args.get('name')
+    price = request.args.get('price')
+    image_url = request.args.get('image_url')
+    
+    # Render booking page with data
+    return render_template('booking.html', name=name, price=price, image_url=image_url)
+
 if __name__ == '__main__':
     app.run(debug=True)
