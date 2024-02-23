@@ -40,7 +40,7 @@ def get_recommendations(theme, neighborhood):
     for idx in airbnb_indices:
         recommendation = {
             'name': airbnb_df['name'].iloc[idx],
-            #'image_url': airbnb_df['image_url'].iloc[idx],
+            'image': airbnb_df['image'].iloc[idx],
             'ratings': airbnb_df['ratings'].iloc[idx],
             'price': airbnb_df['price'].iloc[idx]
         }
