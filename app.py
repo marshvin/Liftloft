@@ -11,6 +11,9 @@ from  werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from datetime import datetime, timedelta
 from functools import wraps
+import boto3
+from botocore.exceptions import NoCredentialsError
+
 
 app = Flask(__name__)
 
@@ -45,6 +48,7 @@ def get_recommendations(theme, neighborhood):
     
     return recommendations
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -58,6 +62,10 @@ def recommend():
     
     return render_template('recommendation.html', recommendations=recommendations)
 
+# AWS S3 credentials
+AWS_ACCESS_KEY = 'AKIA2UC3D4NKJLNMHNOA'
+AWS_SECRET_KEY = '1jjwyNXquTFYZWKIfWiUAja5qsM4qn2Cs9xZ2Fyh'
+AWS_BUCKET_NAME = 'liftloft'
 # NEVER HARDCODE YOUR CONFIGURATION IN YOUR CODE
 # INSTEAD CREATE A .env FILE AND STORE IN IT
 app.config['SECRET_KEY'] = '7KXn3mXuciicTDlr2f8ooJCWBEW9iRXO'
@@ -66,7 +74,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:54
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # creates SQLALCHEMY object
 db = SQLAlchemy(app)
-  
+ 
 # Database ORMs
 class User(db.Model):
     __tablename__ = 'User'  # Specify the correct table name here
@@ -112,7 +120,17 @@ def token_required(f):
         return  f(current_user, *args, **kwargs)
   
     return decorated
-  
+
+# Function to upload image to AWS S3
+def upload_image_to_s3(file, bucket_name, acl='public-read'):
+    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
+    try:
+        s3.upload_fileobj(file, bucket_name, file.filename, ExtraArgs={'ACL': acl})
+        return f"https://{bucket_name}.s3.amazonaws.com/{file.filename}"
+    except FileNotFoundError:
+        return f"FileNotFoundError: {file.filename} not found."
+    except NoCredentialsError:
+        return "AWS credentials not available." 
 # Route for the upload page and handling image uploads
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -128,15 +146,13 @@ def upload():
         # Handle image upload to AWS S3
         if 'image' in request.files:
             image = request.files['image']
-            # Process the uploaded image (e.g., save to disk, upload to S3)
-            # Store the image URL in the database
-            # Example: image_url = upload_image_to_s3(image)
-            image_url = 'url_of_uploaded_image'
+            image_url = upload_image_to_s3(image, AWS_BUCKET_NAME)
+        else:
+            image_url = None
         
-        
-            airbnb = Airbnb(name=name, theme=theme, location=location, ratings=ratings, price=price)
-            db.session.add(airbnb)
-            db.session.commit()
+        airbnb = Airbnb(name=name, theme=theme, location=location, ratings=ratings, price=price, image_url=image_url)
+        db.session.add(airbnb)
+        db.session.commit()
         
         return f"Airbnb listing uploaded successfully. Image URL: {image_url}"
     return "Unsupported HTTP method."
