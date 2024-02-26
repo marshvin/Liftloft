@@ -2,6 +2,8 @@
 # Ignore specific file
 airbnb_kenya.csv
 
+# Ignore .env file
+.env
 
 # Ignore all files with a specific extension
 *.csv
@@ -15,19 +17,9 @@ package-lock.json
 # Ignore package.json if needed
 package.json
 
-# .gitignore
-# Ignore specific file
-airbnb_kenya.csv
-
-
-# Ignore all files with a specific extension
-*.csv
- 
 # Ignore node_modules directory
 node_modules/
 
 # Ignore package-lock.json
 package-lock.json
 
-# Ignore package.json if needed
-# package.json
