@@ -13,6 +13,11 @@ from datetime import datetime, timedelta
 from functools import wraps
 import boto3
 from botocore.exceptions import NoCredentialsError
+import os  # Add this import
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app = Flask(__name__)
@@ -63,16 +68,16 @@ def recommend():
     return render_template('recommendation.html', recommendations=recommendations)
 
 # AWS S3 credentials
-AWS_ACCESS_KEY = 'AKIA2UC3D4NKJLNMHNOA'
-AWS_SECRET_KEY = '1jjwyNXquTFYZWKIfWiUAja5qsM4qn2Cs9xZ2Fyh'
-AWS_BUCKET_NAME = 'liftloft'
-# NEVER HARDCODE YOUR CONFIGURATION IN YOUR CODE
-# INSTEAD CREATE A .env FILE AND STORE IN IT
-app.config['SECRET_KEY'] = '7KXn3mXuciicTDlr2f8ooJCWBEW9iRXO'
-# database name'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/Liftloft'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-# creates SQLALCHEMY object
+AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY')
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
+AWS_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+# Load SQLALCHEMY_DATABASE_URI from environment variables
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+
 db = SQLAlchemy(app)
  
 # Database ORMs
