@@ -72,3 +72,17 @@ setTimeout(function() {
     // Show content after the delay
     document.getElementById('content').classList.remove('hidden');
 }, 3000); // Adjust the delay as needed
+
+    document.getElementById('searchInput').addEventListener('input', function(event) {
+        const query = event.target.value.trim().toLowerCase();
+        const recommendationCards = document.querySelectorAll('.recommendation-card');
+
+        recommendationCards.forEach(function(card) {
+            const name = card.querySelector('h2').textContent.toLowerCase();
+            if (name.includes(query)) {
+                card.style.display = 'block'; // Show the card if it matches the search query
+            } else {
+                card.style.display = 'none'; // Hide the card if it doesn't match the search query
+            }
+        });
+    });
