@@ -175,7 +175,7 @@ def signup():
         # Check if the user already exists
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            return make_response('User already exists. Please Log in.', 202)
+            return jsonify({'message': 'User already exists. Please Log in.'}), 202
 
         # Create a new user
         new_user = User(
@@ -189,7 +189,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        return make_response('Successfully registered.', 201)
+        return jsonify({'message': 'Successfully registered.'}), 201
 
     # Render the signup page if the request method is GET
     return render_template('signup.html')
@@ -206,7 +206,7 @@ def signin():
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password, password):
-            return make_response('Could not verify', 403)
+             return make_response(jsonify({'error': 'Wrong Password or email'}), 403)
 
         # Create a session for the user
         session['user_id'] = user.id
