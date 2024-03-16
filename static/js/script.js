@@ -73,16 +73,43 @@ setTimeout(function() {
     document.getElementById('content').classList.remove('hidden');
 }, 3000); // Adjust the delay as needed
 
-    document.getElementById('searchInput').addEventListener('input', function(event) {
-        const query = event.target.value.trim().toLowerCase();
-        const recommendationCards = document.querySelectorAll('.recommendation-card');
-
-        recommendationCards.forEach(function(card) {
-            const name = card.querySelector('h2').textContent.toLowerCase();
-            if (name.includes(query)) {
-                card.style.display = 'block'; // Show the card if it matches the search query
-            } else {
-                card.style.display = 'none'; // Hide the card if it doesn't match the search query
-            }
+document.getElementById('searchInput').addEventListener('input', function(event) {
+    const query = event.target.value.trim().toLowerCase();
+    const recommendationCards = document.querySelectorAll('.recommendation-card');
+    recommendationCards.forEach(function(card) {
+        const name = card.querySelector('h2').textContent.toLowerCase();
+        if (name.includes(query)) {
+                card.style.display = 'block'; 
+        } else {
+                card.style.display = 'none'; 
+        }
         });
     });
+    document.addEventListener("DOMContentLoaded", function() {
+        const filterButton = document.getElementById("filterButton");
+        const priceFilter = document.getElementById("priceFilter");
+        const priceRange = document.getElementById("priceRange");
+        const priceOutput = document.getElementById("priceOutput");
+        const recommendationCards = document.querySelectorAll(".recommendation-card");
+    
+        filterButton.addEventListener("click", function() {
+            priceFilter.classList.toggle("hidden");
+        });
+    
+        priceRange.addEventListener("input", function() {
+            const selectedPrice = parseInt(priceRange.value);
+            priceOutput.textContent = `$${selectedPrice}`;
+    
+            recommendationCards.forEach(card => {
+                const priceElement = card.querySelector(".text-gray-800");
+                const price = parseInt(priceElement.textContent.replace("$", ""));
+                
+                if (price <= selectedPrice) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
+    

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = '/';
             }, 2000); // Redirect after 3 seconds 
         } else {
-            responseMessageElement.textContent = 'Could not verify';
+            responseMessageElement.textContent = 'Wrong Password or Email';
         }
     });
 });
