@@ -6,6 +6,7 @@ Flask
 Flask-JWT-Extended
 Flask-SQLAlchemy
 fonttools
+gunicorn
 Jinja2
 jmespath
 joblib
