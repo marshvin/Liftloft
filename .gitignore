@@ -2,9 +2,6 @@
 # Ignore specific file
 airbnb_kenya.csv
 
-# Ignore .env file
-.env
-
 # Ignore all files with a specific extension
 *.csv
  
